@@ -18,6 +18,7 @@ public class Calculator {
         char operator;          // 사칙 연산 기호
         int result = 0;         // 연산 결과 값
 
+        // 양의 정수 (0 포함) 입력 받기
         // 0보다 작은 경우 do-while로 입력을 다시 받을 수 있게 구현
         // 정수가 아닌 경우 try-catch로 예외 처리
         do {
@@ -33,6 +34,8 @@ public class Calculator {
             }
         } while (num1 < 0 || num2 < 0);
 
+        // 사칙 연산 기호 (+, -, *, /) 입력 받기
+        // isNotOperator 함수를 사용하여 사칙 연산 기호인지 판별, 사칙 연산 기호가 아니라면 재입력
         do {
             System.out.print("사칙 연산 기호를 입력하세요: ");
             operator = scanner.nextLine().charAt(0);
