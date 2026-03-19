@@ -30,7 +30,7 @@ public class Calculator {
 
 
             } catch (NumberFormatException ex) {
-                System.out.println("양의 숫자(0 포함)를 입력해주세요.");
+                System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex.toString());
             }
         } while (num1 < 0 || num2 < 0);
 
@@ -45,5 +45,32 @@ public class Calculator {
             }
         } while (isNotOperator(operator));
 
+        // 입력 받은 정수 2개와 사칙 연산 기호를 사용하여 연산 진행 후 출력
+        // 연산 진행
+        try {
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    System.out.println("연산 오류");
+                    break;
+            }
+
+            // 출력
+            System.out.println("결과 : " + result);
+
+        } catch (ArithmeticException ex) {
+            System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex.toString());
+        }
     }
 }
