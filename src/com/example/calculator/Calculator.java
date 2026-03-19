@@ -30,7 +30,7 @@ public class Calculator {
 
 
             } catch (NumberFormatException ex) {
-                System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex.toString());
+                System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex);
             }
         } while (num1 < 0 || num2 < 0);
 
@@ -70,7 +70,7 @@ public class Calculator {
             System.out.println("결과 : " + result);
 
         } catch (ArithmeticException ex) {
-            System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex.toString());
+            System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex);
         }
     }
 }
