@@ -70,7 +70,7 @@ public class Calculator {
             System.out.println("결과 : " + result);
 
         } catch (ArithmeticException ex) {
-            System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex);
+            System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. " + ex);
         }
     }
 }
