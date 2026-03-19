@@ -30,9 +30,9 @@ public class Calculator {
 
                     if ((num1 < 0 || num2 < 0)) {
                         System.out.println("양의 숫자(0 포함)를 입력해주세요.");
-                        continue;
+                    } else {
+                        break;
                     }
-                    break;
 
                 } catch (NumberFormatException ex) {
                     System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex);
@@ -47,9 +47,9 @@ public class Calculator {
                 // isNotOperator 함수를 사용하여 사칙 연산 기호인지 판별
                 if (isNotOperator(operator)) {
                     System.out.println("올바른 사칙 연산 기호를 입력하세요. (+, -, *, /)");
-                    continue;
+                } else {
+                    break;
                 }
-                break;
             }
 
             // 입력 받은 정수 2개와 사칙 연산 기호를 사용하여 연산 진행 후 출력
