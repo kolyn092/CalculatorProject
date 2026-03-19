@@ -3,13 +3,20 @@ package com.example.calculator;
 import java.util.Scanner;
 
 public class Calculator {
+
+    // 사칙 연산 기호가 아니면 true 반환하는 함수
+    public static boolean isNotOperator(char operator) {
+        return !(operator == '+' || operator == '-' || operator == '*' || operator == '/');
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // do-while 조건 처리를 하기 위해 초기값을 -1로 설정
-        int num1 = -1;  // 첫 번째 숫자
-        int num2 = -1;  // 두 번째 숫자
-        int result = 0; // 연산 결과 값
+        int num1 = -1;          // 첫 번째 숫자
+        int num2 = -1;          // 두 번째 숫자
+        char operator;          // 사칙 연산 기호
+        int result = 0;         // 연산 결과 값
 
         // 0보다 작은 경우 do-while로 입력을 다시 받을 수 있게 구현
         // 정수가 아닌 경우 try-catch로 예외 처리
@@ -25,6 +32,15 @@ public class Calculator {
                 System.out.println("양의 숫자(0 포함)를 입력해주세요.");
             }
         } while (num1 < 0 || num2 < 0);
+
+        do {
+            System.out.print("사칙 연산 기호를 입력하세요: ");
+            operator = scanner.nextLine().charAt(0);
+
+            if (isNotOperator(operator)) {
+                System.out.println("올바른 사칙 연산 기호를 입력하세요. (+, -, *, /)");
+            }
+        } while (isNotOperator(operator));
 
     }
 }
