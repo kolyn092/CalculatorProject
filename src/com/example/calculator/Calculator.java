@@ -1,12 +1,22 @@
 package com.example.calculator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Calculator {
 
     // 연산 결과를 저장하는 컬렉션
     private List<Integer> calculateList = new ArrayList<>();
+
+    public List<Integer> getCalculateList() {
+        return Collections.unmodifiableList(calculateList); // 읽기 전용
+    }
+
+    public void setCalculateList(int data) {
+        /// 현재 상태에서 setter를 사용하는게 좋은 방법은 아니지만 과제를 하기 위한 생성
+        calculateList.add(data);
+    }
 
     // 사칙 연산 기호가 아니면 true 반환하는 함수
     public boolean isNotOperator(char operator) {
@@ -35,8 +45,6 @@ public class Calculator {
                     System.out.println("연산 오류");
                     break;
             }
-            // 연산 결과 저장
-            calculateList.add(result);
 
             // 연산 결과 반환
             return result;
