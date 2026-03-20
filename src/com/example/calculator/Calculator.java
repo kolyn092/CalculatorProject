@@ -32,14 +32,13 @@ public class Calculator {
             }
         };
 
-        private final String operator;
+        private final char operator;
 
         OperatorType(char operator) {
-            this.operator = Character.toString(operator);
+            this.operator = operator;
         }
 
-        @Override
-        public String toString() {
+        public char toChar() {
             return operator;
         }
 
@@ -80,7 +79,7 @@ public class Calculator {
         try {
             // 종류 순회하면서 같으면 연산 후 빠져나감
             for (var op : OperatorType.values()) {
-                if (op.toString().charAt(0) == operator) {
+                if (op.toChar() == operator) {
                     result = op.calculate(num1, num2);
                     break;
                 }
