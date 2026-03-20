@@ -6,6 +6,46 @@ import java.util.List;
 
 public class Calculator {
 
+    public enum OperatorType {
+        ADD('+') {
+            @Override
+            public int calculate(int num1, int num2) {
+                return num1 + num2;
+            }
+        },
+        SUB('-') {
+            @Override
+            public int calculate(int num1, int num2) {
+                return num1 - num2;
+            }
+        },
+        MUL('*') {
+            @Override
+            public int calculate(int num1, int num2) {
+                return num1 * num2;
+            }
+        },
+        DIV('/') {
+            @Override
+            public int calculate(int num1, int num2) {
+                return num1 / num2;
+            }
+        };
+
+        private final String operator;
+
+        OperatorType(char operator) {
+            this.operator = Character.toString(operator);
+        }
+
+        @Override
+        public String toString() {
+            return operator;
+        }
+
+        public abstract int calculate(int num1, int num2);
+    }
+
     // 연산 결과를 저장하는 컬렉션
     private final List<Integer> calculateList = new ArrayList<>();
 
@@ -38,22 +78,12 @@ public class Calculator {
 
         // 입력 받은 정수 2개와 사칙 연산 기호를 사용하여 연산 진행 후 출력
         try {
-            switch (operator) {
-                case '+':
-                    result = num1 + num2;
+            // 종류 순회하면서 같으면 연산 후 빠져나감
+            for (var op : OperatorType.values()) {
+                if (op.toString().charAt(0) == operator) {
+                    result = op.calculate(num1, num2);
                     break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    result = num1 / num2;
-                    break;
-                default:
-                    System.out.println("연산 오류");
-                    break;
+                }
             }
 
             // 연산 결과 반환
