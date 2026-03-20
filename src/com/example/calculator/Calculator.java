@@ -7,7 +7,7 @@ import java.util.List;
 public class Calculator {
 
     // 연산 결과를 저장하는 컬렉션
-    private List<Integer> calculateList = new ArrayList<>();
+    private final List<Integer> calculateList = new ArrayList<>();
 
     public List<Integer> getCalculateList() {
         return Collections.unmodifiableList(calculateList); // 읽기 전용
