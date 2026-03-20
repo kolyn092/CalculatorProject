@@ -103,6 +103,8 @@ public class App {
                     }
                     break;
                 case 3:
+                    // remove 활용 예시
+                    calculator.removeResult();
                     break;
                 default:
                     break;

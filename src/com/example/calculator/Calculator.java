@@ -18,6 +18,16 @@ public class Calculator {
         calculateList.add(data);
     }
 
+    // 가장 먼저 저장된 데이터를 삭제하는 함수
+    public void removeResult() {
+        if (calculateList.isEmpty()) {
+            System.out.println("데이터가 없습니다.");
+        } else {
+            calculateList.remove(0);
+            System.out.println("가장 먼저 저장된 데이터를 삭제했습니다.");
+        }
+    }
+
     // 사칙 연산 기호가 아니면 true 반환하는 함수
     public boolean isNotOperator(char operator) {
         return !(operator == '+' || operator == '-' || operator == '*' || operator == '/');
@@ -51,7 +61,7 @@ public class Calculator {
 
             // 0으로 나눈 경우 ArithmeticException 처리
         } catch (ArithmeticException ex) {
-            throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. " + ex);
+            throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. ");
         }
     }
 }
