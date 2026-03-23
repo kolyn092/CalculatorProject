@@ -22,6 +22,7 @@ public class App {
                 selectMenu = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException ex) {
                 System.out.println("0~4까지의 정수만 입력하세요.");
+                continue;
             }
             switch (selectMenu) {
                 case 0:
