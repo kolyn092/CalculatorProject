@@ -109,7 +109,7 @@ public class App {
                     calculator.removeResult();
                     break;
                 case 4:
-                    System.out.print("첫 번째 숫자를 입력하세요: ");
+                    System.out.print("비교할 숫자를 입력하세요: ");
                     Number num = Double.parseDouble(scanner.nextLine());
                     calculator.printBiggerNumber(num).forEach(System.out::println);
                     break;
