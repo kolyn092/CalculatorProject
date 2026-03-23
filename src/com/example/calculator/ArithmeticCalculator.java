@@ -43,6 +43,15 @@ public class ArithmeticCalculator<T extends Number> {
             return operator;
         }
 
+        public static OperatorType getType(char operator) {
+            for (var op : OperatorType.values()) {
+                if (op.toChar() == operator) {
+                    return op;
+                }
+            }
+            return null;
+        }
+
         public abstract <T extends Number> double calculate(T num1, T num2);
     }
 
@@ -77,17 +86,15 @@ public class ArithmeticCalculator<T extends Number> {
         double result = 0.0;         // 연산 결과 값
 
         // 나눗셈 연산일 때 분모가 0인 경우 예외처리
-        if (num2.intValue() == 0 && operator == '/') {
+        if (num2.doubleValue() == 0.0 && operator == '/') {
             System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
             return null;
         }
         // 입력 받은 정수 2개와 사칙 연산 기호를 사용하여 연산 진행 후 출력
-        // 종류 순회하면서 같으면 연산 후 빠져나감
-        for (var op : OperatorType.values()) {
-            if (op.toChar() == operator) {
-                result = op.calculate(num1, num2);
-                break;
-            }
+        // 내부에서 순회해서 해당되는 타입 리턴
+        var type = OperatorType.getType(operator);
+        if (type != null) {
+            result = type.calculate(num1, num2);
         }
 
         // 연산 결과 반환
