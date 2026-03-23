@@ -6,7 +6,7 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculator<Number> calculator = new Calculator<>();
+        ArithmeticCalculator<Number> calculator = new ArithmeticCalculator<>();
 
         while (true) {
             int selectMenu = 0;     // 선택한 메뉴 번호

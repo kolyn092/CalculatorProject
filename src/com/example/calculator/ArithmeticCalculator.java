@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Calculator<T extends Number> {
+public class ArithmeticCalculator<T extends Number> {
 
     public enum OperatorType {
         ADD('+') {
