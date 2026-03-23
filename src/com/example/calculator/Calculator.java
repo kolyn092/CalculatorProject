@@ -4,31 +4,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Calculator {
+public class Calculator<T extends Number> {
 
     public enum OperatorType {
         ADD('+') {
             @Override
-            public int calculate(int num1, int num2) {
-                return num1 + num2;
+            public <T extends Number> double calculate(T num1, T num2) {
+                return num1.doubleValue() + num2.doubleValue();
             }
         },
         SUB('-') {
             @Override
-            public int calculate(int num1, int num2) {
-                return num1 - num2;
+            public <T extends Number> double calculate(T num1, T num2) {
+                return num1.doubleValue() - num2.doubleValue();
             }
         },
         MUL('*') {
             @Override
-            public int calculate(int num1, int num2) {
-                return num1 * num2;
+            public <T extends Number> double calculate(T num1, T num2) {
+                return num1.doubleValue() * num2.doubleValue();
             }
         },
         DIV('/') {
             @Override
-            public int calculate(int num1, int num2) {
-                return num1 / num2;
+            public <T extends Number> double calculate(T num1, T num2) {
+                return num1.doubleValue() / num2.doubleValue();
             }
         };
 
@@ -42,17 +42,17 @@ public class Calculator {
             return operator;
         }
 
-        public abstract int calculate(int num1, int num2);
+        public abstract <T extends Number> double calculate(T num1, T num2);
     }
 
     // 연산 결과를 저장하는 컬렉션
-    private final List<Integer> calculateList = new ArrayList<>();
+    private final List<T> calculateList = new ArrayList<>();
 
-    public List<Integer> getCalculateList() {
+    public List<T> getCalculateList() {
         return Collections.unmodifiableList(calculateList); // 읽기 전용
     }
 
-    public void setCalculateList(int data) {
+    public void setCalculateList(T data) {
         /// 현재 상태에서 setter를 사용하는게 좋은 방법은 아니지만 과제를 하기 위한 생성
         calculateList.add(data);
     }
@@ -72,8 +72,8 @@ public class Calculator {
         return !(operator == '+' || operator == '-' || operator == '*' || operator == '/');
     }
 
-    public int calculate(int num1, int num2, char operator) {
-        int result = 0;         // 연산 결과 값
+    public T calculate(T num1, T num2, char operator) {
+        double result = 0.0;         // 연산 결과 값
 
         // 입력 받은 정수 2개와 사칙 연산 기호를 사용하여 연산 진행 후 출력
         try {
@@ -84,9 +84,8 @@ public class Calculator {
                     break;
                 }
             }
-
             // 연산 결과 반환
-            return result;
+            return (T) Double.valueOf(result);
 
             // 0으로 나눈 경우 ArithmeticException 처리
         } catch (ArithmeticException ex) {
