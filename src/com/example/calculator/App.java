@@ -11,10 +11,17 @@ public class App {
         while (true) {
             int selectMenu = 0;     // 선택한 메뉴 번호
             try {
-                System.out.print("메뉴 선택\n 1.계산기 2.연산 결과 내역 보기 3.첫 번째 연산 결과 삭제 0.종료\n");
+                System.out.print("""
+                메뉴 선택
+                1.계산기
+                2.연산 결과 내역 보기
+                3.첫 번째 연산 결과 삭제
+                4.입력 값보다 큰 결과값 출력
+                0.종료
+                """);
                 selectMenu = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException ex) {
-                System.out.println("0~3까지의 정수만 입력하세요.");
+                System.out.println("0~4까지의 정수만 입력하세요.");
             }
             switch (selectMenu) {
                 case 0:
@@ -100,7 +107,13 @@ public class App {
                 case 3: // remove 활용 예시
                     calculator.removeResult();
                     break;
+                case 4:
+                    System.out.print("첫 번째 숫자를 입력하세요: ");
+                    Number num = Double.parseDouble(scanner.nextLine());
+                    calculator.printBiggerNumber(num).forEach(System.out::println);
+                    break;
                 default:
+                    System.out.println("0~4까지의 정수만 입력하세요.");
                     break;
             }
         }

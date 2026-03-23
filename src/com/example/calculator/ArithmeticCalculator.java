@@ -3,6 +3,7 @@ package com.example.calculator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ArithmeticCalculator<T extends Number> {
 
@@ -91,5 +92,10 @@ public class ArithmeticCalculator<T extends Number> {
 
         // 연산 결과 반환
         return (T) Double.valueOf(result);
+    }
+
+    public Stream<T> printBiggerNumber(T num) {
+        return calculateList.stream()
+                .filter(list -> list.doubleValue() > num.doubleValue());
     }
 }
