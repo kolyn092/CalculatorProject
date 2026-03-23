@@ -75,21 +75,21 @@ public class Calculator<T extends Number> {
     public T calculate(T num1, T num2, char operator) {
         double result = 0.0;         // 연산 결과 값
 
-        // 입력 받은 정수 2개와 사칙 연산 기호를 사용하여 연산 진행 후 출력
-        try {
-            // 종류 순회하면서 같으면 연산 후 빠져나감
-            for (var op : OperatorType.values()) {
-                if (op.toChar() == operator) {
-                    result = op.calculate(num1, num2);
-                    break;
-                }
-            }
-            // 연산 결과 반환
-            return (T) Double.valueOf(result);
-
-            // 0으로 나눈 경우 ArithmeticException 처리
-        } catch (ArithmeticException ex) {
-            throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. ");
+        // 나눗셈 연산일 때 분모가 0인 경우 예외처리
+        if (num2.intValue() == 0 && operator == '/') {
+            System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+            return null;
         }
+        // 입력 받은 정수 2개와 사칙 연산 기호를 사용하여 연산 진행 후 출력
+        // 종류 순회하면서 같으면 연산 후 빠져나감
+        for (var op : OperatorType.values()) {
+            if (op.toChar() == operator) {
+                result = op.calculate(num1, num2);
+                break;
+            }
+        }
+
+        // 연산 결과 반환
+        return (T) Double.valueOf(result);
     }
 }

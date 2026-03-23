@@ -6,7 +6,7 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculator<Number> calculator = new Calculator<Number>();
+        Calculator<Number> calculator = new Calculator<>();
 
         while (true) {
             int selectMenu = 0;     // 선택한 메뉴 번호
@@ -14,7 +14,7 @@ public class App {
                 System.out.print("메뉴 선택\n 1.계산기 2.연산 결과 내역 보기 3.첫 번째 연산 결과 삭제 0.종료\n");
                 selectMenu = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException ex) {
-                System.out.println("1~3까지의 정수만 입력하세요.");
+                System.out.println("0~3까지의 정수만 입력하세요.");
             }
             switch (selectMenu) {
                 case 0:
@@ -28,7 +28,6 @@ public class App {
 
                         // 양의 정수 (0 포함) 입력 받기
                         while (true) {
-                            // 정수가 아닌 경우 try-catch로 NumberFormatException 처리
                             try {
                                 System.out.print("첫 번째 숫자를 입력하세요: ");
                                 num1 = Double.parseDouble(scanner.nextLine());
@@ -42,7 +41,7 @@ public class App {
                                 }
 
                             } catch (NumberFormatException ex) {
-                                System.out.println("양의 숫자(0 포함)를 입력해주세요. " + ex);
+                                System.out.println("계산기 예외) 양의 숫자(0 포함)를 입력해주세요. " + ex);
                             }
                         }
 
@@ -62,7 +61,10 @@ public class App {
                         try {
                             // 연산
                             Number result = calculator.calculate(num1, num2, operator);
-
+                            // 잘못되 연산으로 null이 넘어올 경우 계산 결과를 저장하지 않음.
+                            if (result == null) {
+                                continue;
+                            }
                             // setter 활용 예시 (원래는 클래스 내부에서 처리해야함)
                             calculator.setCalculateList(result);
 
@@ -77,8 +79,8 @@ public class App {
                             if (command.equals("exit")) {
                                 break;
                             }
-                        } catch (ArithmeticException ex) {
-                            System.out.println("예외 : " + ex);
+                        } catch (Exception ex) {
+                            System.out.println("계산기 예외) " + ex);
                         }
                     }
                     break;
