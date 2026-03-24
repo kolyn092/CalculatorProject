@@ -26,6 +26,7 @@ public class App {
             }
             switch (selectMenu) {
                 case 0:
+                    scanner.close();
                     return;
                 case 1: // 계산기
                     // exit 문자열을 입력하기 전까지 무한으로 진행함
