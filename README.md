@@ -56,6 +56,8 @@ feature/step1 → feature/step2 → feature/step3 → master
 
 ---
 ## 🧾 실행 방법
+```
 git clone https://github.com/kolyn092/CalculatorProject.git
 cd CalculatorProject
 run App.java
+```
