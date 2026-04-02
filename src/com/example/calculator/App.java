@@ -9,7 +9,7 @@ public class App {
         ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>();
 
         while (true) {
-            int selectMenu = 0;     // 선택한 메뉴 번호
+            int selectMenu;     // 선택한 메뉴 번호
             try {
                 System.out.print("""
                 메뉴 선택
