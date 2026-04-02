@@ -54,20 +54,19 @@ public class App {
                             }
                         }
 
-                        // 사칙 연산 기호 (+, -, *, /) 입력 받기
-                        while (true) {
-                            System.out.print("사칙 연산 기호를 입력하세요: ");
-                            operator = scanner.nextLine().charAt(0);
-
-                            // isNotOperator 함수를 사용하여 사칙 연산 기호인지 판별
-                            if (calculator.isNotOperator(operator)) {
-                                System.out.println("올바른 사칙 연산 기호를 입력하세요. (+, -, *, /)");
-                            } else {
-                                break;
-                            }
-                        }
-
                         try {
+                            // 사칙 연산 기호 (+, -, *, /) 입력 받기
+                            while (true) {
+                                System.out.print("사칙 연산 기호를 입력하세요: ");
+                                operator = scanner.nextLine().charAt(0);
+
+                                // isNotOperator 함수를 사용하여 사칙 연산 기호인지 판별
+                                if (calculator.isNotOperator(operator)) {
+                                    System.out.println("올바른 사칙 연산 기호를 입력하세요. (+, -, *, /)");
+                                } else {
+                                    break;
+                                }
+                            }
                             // 연산
                             Number result = calculator.calculate(num1, num2, operator);
                             // 잘못되 연산으로 null이 넘어올 경우 계산 결과를 저장하지 않음.
@@ -86,6 +85,9 @@ public class App {
                             if (command.equals("exit")) {
                                 break;
                             }
+                        } catch (StringIndexOutOfBoundsException ex) {
+                            System.out.println("공백/빈 문자열은 불가능합니다.");
+                            break;
                         } catch (Exception ex) {
                             System.out.println("계산기 예외) " + ex);
                         }
