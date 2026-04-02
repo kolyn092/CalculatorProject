@@ -6,7 +6,7 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArithmeticCalculator<Number> calculator = new ArithmeticCalculator<>();
+        ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>();
 
         while (true) {
             int selectMenu = 0;     // 선택한 메뉴 번호
@@ -68,14 +68,14 @@ public class App {
                                 }
                             }
                             // 연산
-                            Number result = calculator.calculate(num1, num2, operator);
-                            // 잘못되 연산으로 null이 넘어올 경우 계산 결과를 저장하지 않음.
-                            if (result == null) {
-                                continue;
-                            }
+                            try {
+                                Number result = calculator.calculate(num1, num2, operator);
 
-                            // 결과 출력
-                            System.out.println("결과 : " + result);
+                                // 결과 출력
+                                System.out.println("결과 : " + result);
+                            } catch (IllegalArgumentException ex) {
+                                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                            }
 
                             // 반복 여부 확인
                             System.out.println(("더 계산하시겠습니까? (exit 입력 시 종료)"));
@@ -111,7 +111,7 @@ public class App {
                     break;
                 case 4:
                     System.out.print("비교할 숫자를 입력하세요: ");
-                    Number num = Double.parseDouble(scanner.nextLine());
+                    var num = Double.parseDouble(scanner.nextLine());
                     calculator.printBiggerNumber(num).forEach(System.out::println);
                     break;
                 default:
