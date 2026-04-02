@@ -62,11 +62,6 @@ public class ArithmeticCalculator<T extends Number> {
         return Collections.unmodifiableList(calculateList); // 읽기 전용
     }
 
-    public void setCalculateList(T data) {
-        /// 현재 상태에서 setter를 사용하는게 좋은 방법은 아니지만 과제를 하기 위한 생성
-        calculateList.add(data);
-    }
-
     // 가장 먼저 저장된 데이터를 삭제하는 함수
     public void removeResult() {
         if (calculateList.isEmpty()) {
@@ -95,6 +90,7 @@ public class ArithmeticCalculator<T extends Number> {
         var type = OperatorType.getType(operator);
         if (type != null) {
             result = type.calculate(num1, num2);
+            calculateList.add((T) Double.valueOf(result));
         }
 
         // 연산 결과 반환

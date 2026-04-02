@@ -74,8 +74,6 @@ public class App {
                             if (result == null) {
                                 continue;
                             }
-                            // setter 활용 예시 (원래는 클래스 내부에서 처리해야함)
-                            calculator.setCalculateList(result);
 
                             // 결과 출력
                             System.out.println("결과 : " + result);
