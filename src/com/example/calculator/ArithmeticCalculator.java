@@ -76,7 +76,7 @@ public class ArithmeticCalculator<T extends Number> {
         return !(operator == '+' || operator == '-' || operator == '*' || operator == '/');
     }
 
-    public <T extends Number> double calculate(T num1, T num2, char operator) {
+    public <T extends Number> double calculate(T num1, T num2, char operator) throws IllegalArgumentException {
         double result = 0.0;         // 연산 결과 값
 
         // 나눗셈 연산일 때 분모가 0인 경우 예외처리
