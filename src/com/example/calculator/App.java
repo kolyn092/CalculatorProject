@@ -6,10 +6,10 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArithmeticCalculator<Number> calculator = new ArithmeticCalculator<>();
+        ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>();
 
         while (true) {
-            int selectMenu = 0;     // 선택한 메뉴 번호
+            int selectMenu;     // 선택한 메뉴 번호
             try {
                 System.out.print("""
                 메뉴 선택
@@ -54,31 +54,28 @@ public class App {
                             }
                         }
 
-                        // 사칙 연산 기호 (+, -, *, /) 입력 받기
-                        while (true) {
-                            System.out.print("사칙 연산 기호를 입력하세요: ");
-                            operator = scanner.nextLine().charAt(0);
-
-                            // isNotOperator 함수를 사용하여 사칙 연산 기호인지 판별
-                            if (calculator.isNotOperator(operator)) {
-                                System.out.println("올바른 사칙 연산 기호를 입력하세요. (+, -, *, /)");
-                            } else {
-                                break;
-                            }
-                        }
-
                         try {
-                            // 연산
-                            Number result = calculator.calculate(num1, num2, operator);
-                            // 잘못되 연산으로 null이 넘어올 경우 계산 결과를 저장하지 않음.
-                            if (result == null) {
-                                continue;
-                            }
-                            // setter 활용 예시 (원래는 클래스 내부에서 처리해야함)
-                            calculator.setCalculateList(result);
+                            // 사칙 연산 기호 (+, -, *, /) 입력 받기
+                            while (true) {
+                                System.out.print("사칙 연산 기호를 입력하세요: ");
+                                operator = scanner.nextLine().charAt(0);
 
-                            // 결과 출력
-                            System.out.println("결과 : " + result);
+                                // isNotOperator 함수를 사용하여 사칙 연산 기호인지 판별
+                                if (calculator.isNotOperator(operator)) {
+                                    System.out.println("올바른 사칙 연산 기호를 입력하세요. (+, -, *, /)");
+                                } else {
+                                    break;
+                                }
+                            }
+                            // 연산
+                            try {
+                                Number result = calculator.calculate(num1, num2, operator);
+
+                                // 결과 출력
+                                System.out.println("결과 : " + result);
+                            } catch (IllegalArgumentException ex) {
+                                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                            }
 
                             // 반복 여부 확인
                             System.out.println(("더 계산하시겠습니까? (exit 입력 시 종료)"));
@@ -88,6 +85,9 @@ public class App {
                             if (command.equals("exit")) {
                                 break;
                             }
+                        } catch (StringIndexOutOfBoundsException ex) {
+                            System.out.println("공백/빈 문자열은 불가능합니다.");
+                            break;
                         } catch (Exception ex) {
                             System.out.println("계산기 예외) " + ex);
                         }
@@ -111,7 +111,7 @@ public class App {
                     break;
                 case 4:
                     System.out.print("비교할 숫자를 입력하세요: ");
-                    Number num = Double.parseDouble(scanner.nextLine());
+                    var num = Double.parseDouble(scanner.nextLine());
                     calculator.printBiggerNumber(num).forEach(System.out::println);
                     break;
                 default:
